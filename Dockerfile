@@ -90,16 +90,24 @@ RUN curl -Lb /tmp/cookie "https://drive.google.com/uc?export=download&confirm=${
 # ソースコードの書き込み
 #-----------------------------
 WORKDIR /graphonomy_api-server_gke
-COPY *.py /graphonomy_api-server_gke
-COPY *.sh /graphonomy_api-server_gke
-COPY Graphonomy /graphonomy_api-server_gke
+COPY *.py /graphonomy_api-server_gke/
+COPY *.sh /graphonomy_api-server_gke/
+COPY api /graphonomy_api-server_gke/api/
+COPY k8s /graphonomy_api-server_gke/k8s/
+COPY Graphonomy /graphonomy_api-server_gke/Graphonomy/
+
+#-----------------------------
+# ポート開放
+#-----------------------------
+EXPOSE 5000
 
 #-----------------------------
 # コンテナ起動後に自動的に実行するコマンド
 #-----------------------------
-#CMD ["/bin/bash"]
+#CMD ["python", "app.py", "--host 0.0.0.0", "--port 80", "--debug"]
+CMD ["python", "app.py"]
 
 #-----------------------------
 # コンテナ起動後の作業ディレクトリ
 #-----------------------------
-WORKDIR /graphonomy_api-server_gke
+WORKDIR /graphonomy_api-server_gke/api

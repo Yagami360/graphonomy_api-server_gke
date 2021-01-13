@@ -18,7 +18,7 @@ import torch
 import torch.optim as optim
 
 # Graphonomy
-sys.path.append(os.path.join(os.getcwd(), 'Graphonomy'))
+sys.path.append(os.path.join(os.getcwd(), '../Graphonomy'))
 from networks import deeplab_xception_transfer
 
 # 自作モジュール
@@ -40,7 +40,7 @@ app.config["JSON_SORT_KEYS"] = False    # ソートをそのまま
 # graphonomy 関連
 #-------------------
 device = "gpu"
-load_checkpoints_path = "checkpoints/universal_trained.pth"
+load_checkpoints_path = "../checkpoints/universal_trained.pth"
 model = None
 debug = False
 
@@ -118,10 +118,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     #parser.add_argument('--host', type=str, default="localhost", help="ホスト名（コンテナ名 or コンテナ ID）")
     parser.add_argument('--host', type=str, default="0.0.0.0", help="ホスト名（コンテナ名 or コンテナ ID）")
-    parser.add_argument('--port', type=str, default="5001", help="ポート番号")
+    parser.add_argument('--port', type=str, default="5000", help="ポート番号")
     parser.add_argument('--enable_threaded', action='store_true', help="並列処理有効化")
     parser.add_argument('--device', choices=['cpu', 'gpu'], default="gpu", help="使用デバイス (CPU or GPU)")
-    parser.add_argument('--load_checkpoints_path', default='checkpoints/universal_trained.pth', type=str, help="学習済みモデルのチェックポイントへのパス")
+    parser.add_argument('--load_checkpoints_path', default='../checkpoints/universal_trained.pth', type=str, help="学習済みモデルのチェックポイントへのパス")
     parser.add_argument('--use_amp', action='store_true', help="AMP [Automatic Mixed Precision] の使用有効化")
     parser.add_argument('--opt_level', choices=['O0','O1','O2','O3'], default='O1', help='mixed precision calculation mode')
     parser.add_argument('--debug', action='store_true', help="デバッグモード有効化")

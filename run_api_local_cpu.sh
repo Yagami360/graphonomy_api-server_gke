@@ -7,12 +7,11 @@ if [ -d "${RESULTS_DIR}" ] ; then
     rm -r ${RESULTS_DIR}
 fi
 
-docker-compose -f docker-compose_gpu.yml stop
-docker-compose -f docker-compose_gpu.yml up -d
-#docker exec -it -u $(id -u $USER):$(id -g $USER) ${CONTAINER_NAME} bash
+docker-compose -f docker-compose_cpu.yml stop
+docker-compose -f docker-compose_cpu.yml up -d
 
 python request.py \
-    --host 0.0.0.0 --port 5001 \
+    --host 0.0.0.0 --port 5000 \
     --in_image_dir ${IN_IMAGE_DIR} \
     --results_dir ${RESULTS_DIR} \
     --debug

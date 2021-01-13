@@ -1,0 +1,5 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--cache-from', '-t', 'gcr.io/myproject-292103/graphonomy-image', '.']
+images: ['gcr.io/myproject-292103/graphonomy-image']
+timeout: 3600s

@@ -8,7 +8,7 @@ from tqdm import tqdm
 import requests
 
 # 自作モジュール
-from utils import conv_base64_to_pillow, conv_pillow_to_base64
+from api.utils import conv_base64_to_pillow, conv_pillow_to_base64
 
 # グローバル変数
 IMG_EXTENSIONS = (
@@ -20,8 +20,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--host', type=str, default="localhost", help="OpenPose サーバーのホスト名（コンテナ名 or コンテナ ID）")
     parser.add_argument('--port', type=str, default="5001", help="OpenPose サーバーのポート番号")
-    parser.add_argument('--in_image_dir', type=str, default="../sample_n5", help="入力人物画像のディレクトリ")
-    parser.add_argument('--results_dir', type=str, default="../results", help="出力人物パース画像を保存するディレクトリ")
+    parser.add_argument('--in_image_dir', type=str, default="sample_n5", help="入力人物画像のディレクトリ")
+    parser.add_argument('--results_dir', type=str, default="results", help="出力人物パース画像を保存するディレクトリ")
     parser.add_argument('--debug', action='store_true', help="デバッグモード有効化")
     args = parser.parse_args()
     if( args.debug ):

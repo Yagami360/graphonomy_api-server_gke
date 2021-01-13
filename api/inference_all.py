@@ -21,7 +21,7 @@ from torchvision import transforms
 import torch.nn.functional as F
 
 # Graphonomy
-sys.path.append(os.path.join(os.getcwd(), 'Graphonomy'))
+sys.path.append(os.path.join(os.getcwd(), '../Graphonomy'))
 from networks import deeplab_xception_transfer, graph
 from dataloaders import custom_transforms as tr
 
