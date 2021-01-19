@@ -2,9 +2,6 @@
 [Graphonomy](https://github.com/Gaoyiminggithub/Graphonomy) の推論API。<br>
 GKE クラスタ上で動作します。
 
-- ToDo
-    - CPU クラスタでも動作可能とする
-
 ## ■ 動作環境
 - Ubuntu or MacOS :
 - gcloud :
