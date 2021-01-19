@@ -11,7 +11,10 @@ import cv2
 #import socket
 import timeit
 from tqdm import tqdm
-from apex import amp
+try:
+    from apex import amp
+except ImportError:
+    amp = None
 
 # PyTorch includes
 import torch

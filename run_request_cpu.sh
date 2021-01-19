@@ -1,7 +1,7 @@
 PROJECT_ID=myproject-292103
 REGION=asia-northeast1-a
-CLUSTER_NAME=graphonomy-cluster-gpu
-SERVICE_NAME=graphonomy-server-gpu
+CLUSTER_NAME=graphonomy-cluster-cpu
+SERVICE_NAME=graphonomy-server-cpu
 
 # クラスタ切り替え
 gcloud container clusters get-credentials ${CLUSTER_NAME} --zone=${REGION} --project ${PROJECT_ID}

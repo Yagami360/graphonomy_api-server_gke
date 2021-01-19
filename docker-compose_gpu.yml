@@ -7,7 +7,7 @@ services:
         runtime: nvidia
         build:
             context: "."
-            dockerfile: api/Dockerfile
+            dockerfile: Dockerfile
         #volumes:
         #    - ${PWD}:/graphonomy_api-server_gke
         #    - /etc/group:/etc/group:ro

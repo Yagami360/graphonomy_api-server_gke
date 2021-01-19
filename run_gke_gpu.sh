@@ -2,13 +2,13 @@
 set -eu
 
 PROJECT_ID=myproject-292103
-#REGION=asia-northeast1-a
+REGION=asia-northeast1-a
 #REGION=asia-northeast1-c
 #REGION=us-central1-a
 #REGION=us-central1-c
-REGION=asia-east1-a
-#GPU_TYPE=nvidia-tesla-t4
-GPU_TYPE=nvidia-tesla-k80
+#REGION=asia-east1-a
+GPU_TYPE=nvidia-tesla-t4
+#GPU_TYPE=nvidia-tesla-k80
 
 CLUSTER_NAME=graphonomy-cluster-gpu
 POOL_NAME=graphonomy-pool-gpu
@@ -57,7 +57,7 @@ kubectl get service ${SERVICE_NAME}
 EXTERNAL_IP=`kubectl describe service ${SERVICE_NAME} | grep "LoadBalancer Ingress" | awk '{print $3}'`
 
 # 公開外部アドレスの URL にアドレスして動作確認する
-curl http://${EXTERNAL_IP}:${PORT}
+#curl http://${EXTERNAL_IP}:${PORT}
 
 # 公開外部アドレスにリクエスト処理して、レスポンスを受け取る
 python request.py \
@@ -71,7 +71,7 @@ POD_NAME_1=`kubectl get pods | awk '{print $1}' | sed -n 2p`
 kubectl logs ${POD_NAME_1}
 
 # 作成した Pod のコンテナにアクセス
-kubectl exec -it ${POD_NAME_1} /bin/bash
+#kubectl exec -it ${POD_NAME_1} /bin/bash
 
 # nvidia-smi コマンドで GPU ドライバが正しくインストールされているか確認
-nvidia-smi
+#nvidia-smi

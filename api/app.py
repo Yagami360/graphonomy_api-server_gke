@@ -164,6 +164,8 @@ if __name__ == "__main__":
         hidden_layers=128,
         source_classes=7, 
     ).to(device)
+
+    print( "load_checkpoints_path : ", load_checkpoints_path )
     if not load_checkpoints_path == '':
         if( device == "gpu" ):
             model.load_state_dict( torch.load(load_checkpoints_path), strict=False )

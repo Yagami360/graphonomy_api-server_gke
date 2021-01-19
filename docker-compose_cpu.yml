@@ -6,7 +6,7 @@ services:
         image: graphonomy-image
         build:
             context: "."
-            dockerfile: api/Dockerfile
+            dockerfile: Dockerfile
 #        volumes:
 #            - ${PWD}:/graphonomy_api-server_gke
 #            - /etc/group:/etc/group:ro
@@ -18,4 +18,4 @@ services:
             TZ: "Asia/Tokyo"
             LC_ALL: C.UTF-8
             LANG: C.UTF-8
-        #command: bash -c "python3 app.py --host 0.0.0.0 --port 5000 --device cpu"
+#        command: bash -c "python3 app.py --host 0.0.0.0 --port 5000 --device cpu --debug"

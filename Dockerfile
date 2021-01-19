@@ -77,16 +77,6 @@ RUN conda install -c anaconda flask-cors && conda clean -ya
 RUN conda install -c anaconda requests && conda clean -ya
 
 #-----------------------------
-# 学習済みチェックポイントのダウンロード
-#-----------------------------
-WORKDIR /graphonomy_api-server_gke/checkpoints
-ARG FILE_ID=1sWJ54lCBFnzCNz5RTCGQmkVovkY9x8_D
-ARG FILE_NAME=universal_trained.pth
-RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_ID}" > /dev/null
-ARG CODE="$(awk '/_warning_/ {print $NF}' /tmp/cookie)"  
-RUN curl -Lb /tmp/cookie "https://drive.google.com/uc?export=download&confirm=${CODE}&id=${FILE_ID}" -o ${FILE_NAME}
-
-#-----------------------------
 # ソースコードの書き込み
 #-----------------------------
 WORKDIR /graphonomy_api-server_gke
@@ -97,9 +87,21 @@ COPY k8s /graphonomy_api-server_gke/k8s/
 COPY Graphonomy /graphonomy_api-server_gke/Graphonomy/
 
 #-----------------------------
+# 学習済みチェックポイントのダウンロード
+#-----------------------------
+#WORKDIR /graphonomy_api-server_gke/checkpoints
+#ARG FILE_ID=1sWJ54lCBFnzCNz5RTCGQmkVovkY9x8_D
+#ARG FILE_NAME=universal_trained.pth
+#RUN curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_ID}" > /dev/null
+#ARG CODE="$(awk '/_warning_/ {print $NF}' /tmp/cookie)"  
+#RUN curl -Lb /tmp/cookie "https://drive.google.com/uc?export=download&confirm=${CODE}&id=${FILE_ID}" -o ${FILE_NAME}
+RUN sh download_model.sh
+
+#-----------------------------
 # ポート開放
 #-----------------------------
 EXPOSE 5000
+EXPOSE 5001
 
 #-----------------------------
 # コンテナ起動後に自動的に実行するコマンド
